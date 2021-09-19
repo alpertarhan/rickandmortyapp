@@ -3,6 +3,7 @@ package com.project.rickmortycaseapp.ui
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import coil.load
 import com.project.rickmortycaseapp.R
@@ -36,6 +37,9 @@ class CharacterDetailActivity : AppCompatActivity() {
         val detailImg = detailData.getStringExtra("character_detail_image")
         val detailEpisode = detailData.getStringArrayListExtra("episode_name_list")
 
+        val loading = LoadingIndicator(this)
+        loading.loadProgressBar(loading,500)
+
         //SetData binds from initialized intent
         binding.characterDetailImage.load(detailImg) {
             crossfade(true)
@@ -68,9 +72,7 @@ class CharacterDetailActivity : AppCompatActivity() {
         binding.clickableTextView.setOnClickListener {
             finish()
         }
-
     }
-
     //Todo: Filter Episode List
 
 }

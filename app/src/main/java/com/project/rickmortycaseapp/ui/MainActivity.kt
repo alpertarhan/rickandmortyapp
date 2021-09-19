@@ -27,13 +27,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        loadProgressBar()
+        val loading = LoadingIndicator(this)
+        loading.loadProgressBar(loading,1000)
+
         initRecyclerView()
         initData()
 
     }
 
     private fun initData() {
+
         //paged data
         lifecycleScope.launch {
             characterViewModel.dataList.collect { pagingData ->
@@ -49,10 +52,5 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
     }
-     private fun loadProgressBar(){
-        val loading = LoadingIndicator(this)
-        loading.startLoadingIndicator()
-        val handler = Handler()
-        handler.postDelayed({ loading.isDismiss() },2000)
-    }
+
 }

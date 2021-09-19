@@ -21,5 +21,11 @@ class LoadingIndicator(val mActivity: Activity) {
     fun isDismiss(){
         isDialog.dismiss()
     }
+    fun loadProgressBar(loading:LoadingIndicator, time:Long){
+        loading.startLoadingIndicator()
+        val handler = Handler()
+        handler.postDelayed({
+            loading.isDismiss()},time)
+    }
 
 }
