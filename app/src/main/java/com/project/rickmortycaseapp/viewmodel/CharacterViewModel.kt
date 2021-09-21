@@ -15,7 +15,6 @@ import javax.inject.Inject
 class CharacterViewModel
 @Inject constructor(private val api:ApiService):ViewModel(){
 
-    //infinite scroll
     val dataList = Pager(PagingConfig(pageSize = 1)){
             CharacterPagingSource(api)
     }.flow.cachedIn(viewModelScope)
